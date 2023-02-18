@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      header {
+        text-align: center;
+        margin-top: 10px;
+        color: #4caf50; /* Green */
+      }
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 100px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      label {
+        font-size: larger;
+      }
+      input[type="text"] {
+        width: 500px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+      }
+
+      input[type="text"]:focus {
+        border: 3px solid #555;
+      }
+      button {
+        background-color: #4caf50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 2px 2px;
+        cursor: pointer;
+        -webkit-transition-duration: 0.4s; /* Safari */
+        transition-duration: 0.4s;
+      }
+
+      button:hover {
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+          0 17px 50px 0 rgba(0, 0, 0, 0.19);
+      }
+
+      footer {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>URL SHORTNER</h1>
+    </header>
+    <main>
+      <form method="POST" action="/url">
+        <label for="url">Add Your URL Here...</label>
+        <input type="text" placeholder="https://example.com" name="url" />
+        <button type="submit">Generate</button>
+      </form>
+    </main>
+    <footer>
+      <% if (locals.id) { %>
+      <p>http://localhost:8001/url/<%=id%></p>
+      <% } %>
+    </footer>
+  </body>
+</html>
