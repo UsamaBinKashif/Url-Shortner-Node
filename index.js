@@ -14,6 +14,7 @@ connectToMongoDB("mongodb://127.0.0.1:27017/short-url").then(() =>
 //Routes
 const urlRoute = require("./routes/url");
 const userRoute = require("./routes/user");
+const staticRoute = require("./routes/staticRoute");
 //----
 
 //Models
@@ -38,6 +39,7 @@ app.use(express.json());
 //all the routes
 app.use("/url", urlRoute);
 app.use("/user", userRoute);
+app.use("/", staticRoute);
 //----
 
 //starting the app
