@@ -28,6 +28,7 @@ const handleGetAnalytics = async (req, res) => {
   });
 };
 
+//get all the urls from db
 const handleGetAllUrls = async (req, res) => {
   const allUrls = await URL.find({});
   res.render("home", {
