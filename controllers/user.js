@@ -9,7 +9,7 @@ const handleSIGNUPUSER = async (req, res) => {
     email,
     password,
   });
-  return res.render("signin");
+  return res.redirect("/signin");
 };
 const handleSIGNINUSER = async (req, res) => {
   const { email, password } = req.body;

@@ -25,4 +25,5 @@ router.get("/getAll", handleGetAllUrls);
 //get the redirect url by given id
 router.get("/:shortId", handleRedirectToUrl);
 
+//export modules
 module.exports = router;
