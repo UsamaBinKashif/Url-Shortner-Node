@@ -1,11 +1,13 @@
-const shortid = require("shortid");
-const URL = require("../models/url");
+const shortid = require("shortid"); //npm package to generate a random short id
+const URL = require("../models/url"); //url schema
 
+//generate random short id 
 const handleGenerateNewShortURL = async (req, res) => {
   const body = req.body;
   if (!body.url) return res.status(400).json({ error: "url is required" });
   const shortID = shortid();
 
+  //random id, shorten url will be added to db
   await URL.create({
     shortId: shortID,
     redirectURL: body.url,
@@ -16,6 +18,7 @@ const handleGenerateNewShortURL = async (req, res) => {
   });
 };
 
+//check how many clicks on urls
 const handleGetAnalytics = async (req, res) => {
   const shortId = req.params.shortId;
   const result = await URL.findOne({ shortId });
