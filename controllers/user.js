@@ -22,10 +22,9 @@ const handleSIGNINUSER = async (req, res) => {
   if (user) {
     const sessionId = uuidv4();
     setUser(sessionId, user);
-    res.cookie("uuid", sessionId);
+    res.cookie("uid", sessionId);
     return res.redirect("/url");
-
-  } 
+  }
   //else user will be redirected to sign in again
   else {
     return res.render("signin", {
