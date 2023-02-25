@@ -38,11 +38,12 @@ app.set("views", path.resolve("./views")); //used path module here to render the
 //express form data and json data if these middlewares are not added then the post request will not work properly
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.user(cookieParser());
 //----
 
 //all the routes
 app.use("/url", urlRoute);
-app.use("/user", userRoute);
+// app.use("/user", userRoute);
 app.use("/", staticRoute);
 //----
 
