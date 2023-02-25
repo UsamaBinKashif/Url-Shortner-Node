@@ -4,6 +4,10 @@ const app = express();
 const PORT = 8001; //port number
 //--------
 
+// package that parse cookie
+const cookieParser = require("cookie-parser");
+//---------
+
 //Mongo DB Connection
 const { connectToMongoDB } = require("./connect");
 connectToMongoDB("mongodb://127.0.0.1:27017/short-url").then(() =>
