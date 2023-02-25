@@ -1,17 +1,9 @@
-const express = require("express"); //initialize express
-const router = express.Router(); //get express router
-const { handleSIGNUPUSER } = require("../controllers/user"); //signup function
+const express = require("express");
+const { handleUserSignup, handleUserLogin } = require("../controllers/user");
 
-//get req on user
-router.get("/", (req, res) => {
-  res.render("signup");
-});
-//get req on user
-router.get("/sigin", (req, res) => {
-  res.render("signin");
-});
+const router = express.Router();
 
-//post req on user
-router.post("/", handleSIGNUPUSER);
+router.post("/", handleUserSignup);
+router.post("/login", handleUserLogin);
 
 module.exports = router;

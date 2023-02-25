@@ -1,27 +1,24 @@
-const mongoose = require("mongoose"); //intializing moongoose
+const mongoose = require("mongoose");
 
-//creating users schema
-const usersSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       required: true,
-      
     },
     email: {
       type: String,
       required: true,
-      unique: true, // this will force user to use a different email if already exist
+      unique: true,
     },
-    password:{
-        type: String,
-        required: true,
+    password: {
+      type: String,
+      required: true,
     },
   },
-  // add time as an entry so we can track user logs
   { timestamps: true }
 );
 
-const USERS = mongoose.model("users", usersSchema);
+const User = mongoose.model("user", userSchema);
 
-module.exports = USERS;
+module.exports = User;

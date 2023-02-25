@@ -1,12 +1,14 @@
-const sessionToUserMap = new Map();
+const sessionIdToUserMap = new Map();
 
-//setting key to cookie
-const setUser = (id, user) => {
-  sessionToUserMap.set(id, user);
+function setUser(id, user) {
+  sessionIdToUserMap.set(id, user);
+}
+
+function getUser(id) {
+  return sessionIdToUserMap.get(id);
+}
+
+module.exports = {
+  setUser,
+  getUser,
 };
-//setting key from cookie
-const getUser = (id, user) => {
-  sessionToUserMap.get(id);
-};
-//export modules
-module.exports = { getUser, setUser };

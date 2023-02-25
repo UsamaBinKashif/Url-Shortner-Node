@@ -1,37 +1,33 @@
-const USERS = require("../models/user"); //users schema
-const { getUser, setUser } = require("../service/auth"); //cookie creating from service
-const { v4: uuidv4 } = require("uuid"); // it is an npm package which generate a random id whenever called
+const { v4: uuidv4 } = require("uuid");
+const User = require("../models/user");
+const { setUser } = require("../service/auth");
 
-//sign up function
-const handleSIGNUPUSER = async (req, res) => {
+async function handleUserSignup(req, res) {
   const { name, email, password } = req.body;
-  await USERS.create({
+  await User.create({
     name,
     email,
     password,
   });
-  //if correctly done then user will be added to db and redirected to sign in
-  return res.redirect("/signin");
-};
+  return res.redirect("/");
+}
 
-//sign in function
-const handleSIGNINUSER = async (req, res) => {
+async function handleUserLogin(req, res) {
   const { email, password } = req.body;
-  const user = await USERS.findOne({ email, password });
-  //if correctly done then app will find user from db and redirected to home
-  if (user) {
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie("uid", sessionId);
-    return res.redirect("/url");
-  }
-  //else user will be redirected to sign in again
-  else {
-    return res.render("signin", {
-      error: "Incorrect Email or Password... Try again",
-    });
-  }
-};
+  const user = await User.findOne({ email, password });
 
-//exporting functions
-module.exports = { handleSIGNINUSER, handleSIGNUPUSER };
+  if (!user)
+    return res.render("login", {
+      error: "Invalid Username or Password",
+    });
+
+  const sessionId = uuidv4();
+  setUser(sessionId, user);
+  res.cookie("uid", sessionId);
+  return res.redirect("/");
+}
+
+module.exports = {
+  handleUserSignup,
+  handleUserLogin,
+};
